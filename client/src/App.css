@@ -1,0 +1,48 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.game-wrapper {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 760px;
+  height: 500px;
+  background: white;
+  border-radius: 2%;
+}
+
+.section-title {
+  text-align: center;
+  padding: 15px 0;
+  font-family: 'MonserratMedium';
+}
+
+.form-field-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form-field-wrapper .form-group {
+  padding: 10px 10px;
+}
+
+.text-field {
+  padding: 10px 20px;
+  border: solid 2px #39e8b0;
+}
+
+.game-button {
+  padding: 7px 40px;
+  background-color: #39e8b0;
+  color: white;
+  font-family: 'MonserratMedium';
+  cursor: pointer;
+}
+
+.game-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

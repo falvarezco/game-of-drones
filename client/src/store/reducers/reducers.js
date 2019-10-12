@@ -1,15 +1,17 @@
 const initialState = {
-  rounds: [],
-  players: {
-    player1: {
-      name: '',
-      wins: 0
-    },
-    player2: {
-      name: '',
-      wins: 0
+  rounds: [
+    {
+      player1: {
+        name: '',
+        wins: 0
+      },
+      player2: {
+        name: '',
+        wins: 0
+      }
     }
-  }
+  ],
+  isFinished: false
 };
 
 const reducer = (state = initialState, action) => {

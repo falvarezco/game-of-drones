@@ -4,3 +4,25 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  background-color: #ccc;
+}
+
+@font-face {
+  font-family: 'MonserratBold';
+  src: local('Monserrat'),
+    url(./fonts/Montserrat-BoldItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MonserratMedium';
+  src: local('Monserrat'),
+    url(./fonts/Montserrat-MediumItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MonserratRegular';
+  src: local('Monserrat'),
+    url(./fonts/Montserrat-Regular.ttf) format('truetype');
+}

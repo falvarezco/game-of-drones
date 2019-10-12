@@ -4,6 +4,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
+import './fonts/Montserrat-BoldItalic.ttf';
+import './fonts/Montserrat-MediumItalic.ttf';
+import './fonts/Montserrat-Regular.ttf';
+
 import App from './App';
 import reducer from './store/reducers/reducers';
 
