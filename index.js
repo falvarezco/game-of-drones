@@ -1,12 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
 //  Serve client fields from react-app
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
-app.get('/api', (req, res) => {
-  return res.json({ hola: 'mundo' });
+app.post('/createPlayers', (req, res) => {
+  return res.send(req.body);
 });
 
 app.get('*', (req, res) => {

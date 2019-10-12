@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addPlayers } from '../store/actions';
 
 class PlayerSelection extends Component {
   state = {
@@ -22,6 +23,14 @@ class PlayerSelection extends Component {
     stateValues[player].name = value;
 
     this.setState(stateValues, this.validateFormFiels(player, value));
+  };
+
+  submitPlayers = e => {
+    e.preventDefault();
+    const { onSubmit } = this.props;
+    const { player1, player2 } = this.state;
+    const players = { player1, player2 };
+    onSubmit(players);
   };
 
   validateFormFiels = (field, value) => {
@@ -63,6 +72,7 @@ class PlayerSelection extends Component {
           <button
             className="game-button"
             disabled={!player1.valid || !player2.valid}
+            onClick={e => this.submitPlayers(e)}
           >
             Start
           </button>
@@ -79,4 +89,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PlayerSelection);
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: values => dispatch(addPlayers(values))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayerSelection);

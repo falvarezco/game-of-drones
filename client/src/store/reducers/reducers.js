@@ -1,25 +1,29 @@
 const initialState = {
-  rounds: [
-    {
-      player1: {
-        name: '',
-        wins: 0
-      },
-      player2: {
-        name: '',
-        wins: 0
-      }
-    }
-  ],
+  round: 1,
+  player1: {
+    wins: 0,
+    name: ''
+  },
+  player2: {
+    wins: 0,
+    name: ''
+  },
+  rounds: [],
+  isLoading: false,
   isFinished: false
 };
 
 const reducer = (state = initialState, action) => {
-  const newState = { ...state };
+  let newState = { ...state };
 
   switch (action.type) {
-    case 'CREATE_PLAYERS':
-      console.log(newState);
+    case 'ADD_PLAYERS':
+      const playersData = action.payload;
+      Object.keys(playersData).map(key => {
+        newState[key].name = playersData[key].name;
+      });
+      break;
+    default:
       break;
   }
 

@@ -9,11 +9,11 @@ import './fonts/Montserrat-MediumItalic.ttf';
 import './fonts/Montserrat-Regular.ttf';
 
 import App from './App';
-import reducer from './store/reducers/reducers';
+import reducers from './store/reducers/reducers';
 
 const middlewares = [thunk];
 const store = createStore(
-  reducer,
+  reducers,
   compose(
     applyMiddleware(...middlewares),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
