@@ -7,6 +7,7 @@ import {
   faHandScissors
 } from '@fortawesome/free-solid-svg-icons';
 import './Game.css';
+import checkRoundWinner from '../store/actions/checkRoundWinner';
 
 export class Game extends Component {
   state = {
@@ -19,6 +20,11 @@ export class Game extends Component {
     player2: {
       answer: '',
       name: ''
+    },
+    selectedValues: {
+      rock: false,
+      paper: false,
+      scissors: false
     }
   };
 
@@ -34,6 +40,11 @@ export class Game extends Component {
     const newState = { ...this.state };
     const { turn } = newState;
     const value = e.target.value;
+
+    Object.keys(newState.selectedValues).forEach(key => {
+      newState.selectedValues[key] = key === value ? true : false;
+    });
+
     newState[turn].answer = value;
     this.setState(newState);
     this.validateAnswer(turn);
@@ -45,9 +56,36 @@ export class Game extends Component {
     this.setState({ formValid: valid });
   };
 
+  continueGame = e => {
+    e.preventDefault();
+    const newState = { ...this.state };
+    const { checkWinner } = this.props;
+    newState.turn = newState.turn === 'player1' ? 'player2' : 'player1';
+    newState.formValid = false;
+    Object.keys(newState.selectedValues).forEach(key => {
+      newState.selectedValues[key] = false;
+    });
+
+    // checkear si ya hay dos resultados--> Si hay comparar y dar con un ganador y
+    // settear todo para el round 2, Sino continuar hasta que sean diferentes
+    if (
+      newState.player1.answer &&
+      newState.player2.answer !== '' &&
+      newState.player1.answer !== newState.player2.answer
+    ) {
+      // dispatch action
+      checkWinner(newState);
+      this.setState({ turn: 'player1' });
+    } else {
+      this.setState(newState);
+    }
+  };
+
+  t;
+
   render() {
     const { round, player1, player2 } = this.props;
-    const { turn } = this.state;
+    const { turn, formValid, selectedValues } = this.state;
     return (
       <div>
         <h1 className="section-title">Round # {round}</h1>
@@ -62,6 +100,7 @@ export class Game extends Component {
                 name="answer"
                 type="radio"
                 value="rock"
+                checked={selectedValues.rock}
                 onChange={e => this.onAnswerSelected(e)}
               />
               <span className="icon-wrapper">
@@ -79,6 +118,7 @@ export class Game extends Component {
                 name="answer"
                 type="radio"
                 value="paper"
+                checked={selectedValues.paper}
                 onChange={e => this.onAnswerSelected(e)}
               />
               <span className="icon-wrapper">
@@ -96,6 +136,7 @@ export class Game extends Component {
                 name="answer"
                 type="radio"
                 value="scissors"
+                checked={selectedValues.scissors}
                 onChange={e => this.onAnswerSelected(e)}
               />
               <span className="icon-wrapper">
@@ -110,8 +151,8 @@ export class Game extends Component {
         </form>
         <button
           className="game-button continue-game-button"
-          disabled={!this.state.formValid}
-          onClick={e => this.submitPlayers(e)}
+          disabled={!formValid}
+          onClick={e => this.continueGame(e)}
         >
           Continue
         </button>
@@ -129,4 +170,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Game);
+const mapDispatchToProps = dispatch => {
+  return {
+    checkWinner: values => dispatch(checkRoundWinner(values))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);

@@ -22,6 +22,14 @@ const reducer = (state = initialState, action) => {
       Object.keys(playersData).forEach(key => {
         newState[key].name = playersData[key].name;
       });
+
+      break;
+    case 'SAVE_ROUND_RESULT':
+      const result = action.payload;
+      newState.rounds.push(result);
+      newState.round += 1;
+      newState[result.winner].wins += 1;
+
       break;
     default:
       break;
