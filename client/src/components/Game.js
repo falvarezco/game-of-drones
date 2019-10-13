@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import './Game.css';
 import checkRoundWinner from '../store/actions/checkRoundWinner';
+import GameScore from './GameScore';
 
 export class Game extends Component {
   state = {
@@ -100,10 +101,11 @@ export class Game extends Component {
   };
 
   render() {
-    const { round, player1, player2 } = this.props;
+    const { round, player1, player2, rounds } = this.props;
     const { turn, formValid, selectedValues } = this.state;
     return (
       <div>
+        {rounds.length > 0 ? <GameScore score={rounds} /> : null}
         <h1 className="section-title">Round # {round}</h1>
         <h2 className="panel-text">
           {turn === 'player1' ? player1.name : player2.name}
