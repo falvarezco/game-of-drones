@@ -27,11 +27,11 @@ class PlayerSelection extends Component {
 
   submitPlayers = e => {
     e.preventDefault();
-    const { onSubmit } = this.props;
+    const { onSubmit, history } = this.props;
     const { player1, player2 } = this.state;
     const players = { player1, player2 };
     onSubmit(players);
-    this.props.history.push('/game');
+    history.push('/game');
   };
 
   validateFormFiels = (field, value) => {

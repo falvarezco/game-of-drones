@@ -5,3 +5,7 @@ export const addPlayers = values => {
 export const saveRoundResult = values => {
   return { type: 'SAVE_ROUND_RESULT', payload: values };
 };
+
+export const fetchedGameResult = values => {
+  return { type: 'FETCHED_GAME_RESULT', payload: values };
+};

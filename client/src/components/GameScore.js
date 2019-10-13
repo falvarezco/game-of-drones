@@ -19,7 +19,7 @@ class GameScore extends Component {
               return (
                 <tr key={key}>
                   <td>{item.round}</td>
-                  <td>{item.winner}</td>
+                  <td>{this.props[item.winner].name}</td>
                 </tr>
               );
             })}

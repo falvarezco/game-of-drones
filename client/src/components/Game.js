@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import './Game.css';
 import checkRoundWinner from '../store/actions/checkRoundWinner';
+import persistGameWinner from '../store/actions/persistGameWinner';
 import GameScore from './GameScore';
 
 export class Game extends Component {
@@ -36,6 +37,30 @@ export class Game extends Component {
     newState.player2.name = player2.name;
     this.setState(newState);
   }
+
+  componentDidUpdate() {
+    if (this.props.player1.wins > 2 || this.props.player2.wins > 2) {
+      const propsCopy = { ...this.props };
+      const players = [propsCopy.player1, propsCopy.player2];
+      this.checkForGameWinner(players);
+    }
+  }
+
+  componentWillUnmount() {
+    this.resetForNextRound();
+  }
+
+  checkForGameWinner = players => {
+    const { persistGameWinner, history } = this.props;
+    let gameWinner = players.find(player => player.wins === 3);
+
+    if (!gameWinner) {
+      return;
+    }
+    history.push('/game-results');
+    // Fetch Game winner
+    persistGameWinner(gameWinner);
+  };
 
   onAnswerSelected = e => {
     const newState = { ...this.state };
@@ -67,8 +92,8 @@ export class Game extends Component {
       newState.selectedValues[key] = false;
     });
 
-    // checkear si ya hay dos resultados--> Si hay comparar y dar con un ganador y
-    // settear todo para el round 2, Sino continuar hasta que sean diferentes
+    // check if there are two results --> If yes compare and set a round winner
+    // Set everything for next round if answers equal continue
     if (
       newState.player1.answer &&
       newState.player2.answer !== '' &&
@@ -105,7 +130,9 @@ export class Game extends Component {
     const { turn, formValid, selectedValues } = this.state;
     return (
       <div>
-        {rounds.length > 0 ? <GameScore score={rounds} /> : null}
+        {rounds.length > 0 ? (
+          <GameScore score={rounds} player1={player1} player2={player2} />
+        ) : null}
         <h1 className="section-title">Round # {round}</h1>
         <h2 className="panel-text">
           {turn === 'player1' ? player1.name : player2.name}
@@ -190,7 +217,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkWinner: values => dispatch(checkRoundWinner(values))
+    checkWinner: values => dispatch(checkRoundWinner(values)),
+    persistGameWinner: values => dispatch(persistGameWinner(values))
   };
 };
 

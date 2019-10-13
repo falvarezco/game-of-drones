@@ -1,23 +1,7 @@
-import axios from 'axios';
 import { saveRoundResult } from './';
 
 const checkRoundWinner = ({ player1, player2 }) => {
   return (dispatch, getState) => {
-    // dispatch(addPlayers(values));
-    // let params = {
-    //   ...values
-    // };
-    // axios
-    //   .post('/createPlayers', params)
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-
-    // Mirar del state cuantos wins tiene cada uno y de
-    // haber un ganador hacer fetch a api y enviar a pantalla de resultados
     const currentState = getState();
 
     let results = {

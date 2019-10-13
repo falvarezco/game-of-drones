@@ -20,6 +20,12 @@
   font-family: 'MonserratMedium';
 }
 
+.panel-text {
+  font-family: 'MonserratMedium';
+  text-align: center;
+  padding: 10px 0;
+}
+
 .form-field-wrapper {
   display: flex;
   justify-content: center;

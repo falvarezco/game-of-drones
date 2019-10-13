@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-app.post('/createPlayers', (req, res) => {
+app.post('/fetchGameResults', (req, res) => {
   return res.send(req.body);
 });
 
