@@ -29,7 +29,6 @@ const reducer = (state = initialState, action) => {
       newState.rounds.push(result);
       newState.round += 1;
       newState[result.winner].wins += 1;
-
       break;
     default:
       break;

@@ -75,13 +75,29 @@ export class Game extends Component {
     ) {
       // dispatch action
       checkWinner(newState);
-      this.setState({ turn: 'player1' });
+      this.resetForNextRound();
     } else {
       this.setState(newState);
     }
   };
 
-  t;
+  resetForNextRound = () => {
+    const resettedState = {
+      turn: 'player1',
+      player1: {
+        answer: ''
+      },
+      player2: {
+        answer: ''
+      },
+      selectedValues: {
+        rock: false,
+        paper: false,
+        scissors: false
+      }
+    };
+    this.setState(resettedState);
+  };
 
   render() {
     const { round, player1, player2 } = this.props;
