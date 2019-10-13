@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PLAYERS':
       const playersData = action.payload;
-      Object.keys(playersData).map(key => {
+      Object.keys(playersData).forEach(key => {
         newState[key].name = playersData[key].name;
       });
       break;
