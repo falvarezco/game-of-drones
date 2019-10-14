@@ -10,6 +10,7 @@
   transform: translate(-50%, -50%);
   width: 960px;
   min-height: 500px;
+  height: auto;
   background: white;
   border-radius: 2%;
   padding: 20px 0;
@@ -43,10 +44,6 @@
   font-size: 14px;
 }
 
-label {
-  font-family: 'MonserratRegular';
-}
-
 .game-button {
   padding: 10px 40px;
   font-size: 18px;
@@ -67,4 +64,31 @@ label {
   background-color: #39e8b0;
   padding: 10px 40px;
   cursor: not-allowed;
+}
+
+@media only screen and (max-width: 768px) {
+  .game-wrapper {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .game-button {
+    padding: 10px 40%;
+  }
+
+  .game-button:hover {
+    padding: 10px 40%;
+  }
+
+  .game-button:disabled {
+    padding: 10px 40%;
+  }
+
+  .text-field {
+    padding: 15px 30px;
+  }
 }

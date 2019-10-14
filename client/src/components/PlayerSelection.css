@@ -8,4 +8,17 @@
 
 .players-form .form-field-wrapper label {
   padding: 0 50px;
+  font-family: 'MonserratRegular';
+}
+
+@media only screen and (max-width: 768px) {
+  .player-selection-page {
+    padding-top: 80px;
+  }
+
+  .players-form .form-field-wrapper label {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
 }
