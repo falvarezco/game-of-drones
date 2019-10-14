@@ -20,6 +20,7 @@ export class GameStatistics extends Component {
           {stats.map((game, key) => {
             return (
               <GameScore
+                key={key}
                 score={game.rounds}
                 player1={game.player1}
                 player2={game.player2}
