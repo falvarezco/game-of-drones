@@ -10,7 +10,8 @@ const initialState = {
   },
   rounds: [],
   isLoading: false,
-  winner: ''
+  winner: '',
+  gameHistory: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +32,7 @@ const reducer = (state = initialState, action) => {
       newState.round += 1;
       newState[result.winner].wins += 1;
       break;
-    case 'FETCHED_GAME_RESULT':
+    case 'PERSISTED_GAME_RESULT':
       const winner = action.payload.name;
       newState.rounds = [];
       newState.round = 1;
@@ -40,6 +41,9 @@ const reducer = (state = initialState, action) => {
       newState.player2.name = '';
       newState.player2.wins = 0;
       newState.winner = winner;
+      break;
+    case 'FETCHED_GAME_HISTORY':
+      newState.gameHistory = action.payload;
       break;
     default:
       break;

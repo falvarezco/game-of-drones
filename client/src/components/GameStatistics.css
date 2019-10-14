@@ -1,0 +1,8 @@
+.result-box-container {
+  display: flex;
+  padding-top: 50px;
+}
+
+.result-box-container .game-score-wrapper {
+  position: initial;
+}

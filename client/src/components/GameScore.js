@@ -3,10 +3,12 @@ import './GameScore.css';
 
 class GameScore extends Component {
   render() {
-    const { score } = this.props;
+    const { score, winner } = this.props;
     return (
       <div className="game-score-wrapper">
-        <h2 className="section-title">Score</h2>
+        <h2 className="section-title">
+          {winner ? `Winner : ${winner}` : 'Score'}
+        </h2>
         <table className="score-table">
           <thead>
             <tr>

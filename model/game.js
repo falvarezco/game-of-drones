@@ -5,8 +5,8 @@ module.exports = function Model() {
   let Game = new Schema(
     {
       winner: String,
-      players1: String,
-      players2: String,
+      player1: Object,
+      player2: Object,
       rounds: Array
     },
     { collection: 'games' }
