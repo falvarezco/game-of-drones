@@ -1,6 +1,8 @@
 .result-box-container {
   display: flex;
-  padding-top: 50px;
+  flex-wrap: wrap;
+  padding: 50px 0;
+  justify-content: center;
 }
 
 .result-box-container .game-score-wrapper {

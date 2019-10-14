@@ -28,11 +28,11 @@ export class GameStatistics extends Component {
             );
           })}
         </div>
-        <Link to="/">
-          <button className="game-button continue-game-button">
-            Play Again
-          </button>
-        </Link>
+        <div className="form-field-wrapper">
+          <Link to="/">
+            <button className="game-button">Play Again</button>
+          </Link>
+        </div>
       </div>
     );
   }

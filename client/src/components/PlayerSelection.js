@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPlayers } from '../store/actions';
+import './PlayerSelection.css';
 
 class PlayerSelection extends Component {
   state = {
@@ -43,40 +44,46 @@ class PlayerSelection extends Component {
   render() {
     const { player1, player2 } = this.state;
     return (
-      <div>
+      <div className="player-selection-page">
         <h1 className="section-title">Enter Player's Names</h1>
-        <form className="form-field-wrapper" onSubmit={e => e.preventDefault()}>
-          <div className="form-group">
-            <label htmlFor="player1">Player 1: </label>
-            <input
-              className="text-field"
-              id="player1"
-              name="player1"
-              type="text"
-              placeholder="Add Player's 1 name"
-              onChange={e => this.handlePlayerName(e)}
-              value={player1.name}
-            />
+        <form className="players-form" onSubmit={e => e.preventDefault()}>
+          <div className="form-field-wrapper">
+            <div className="form-group">
+              <label htmlFor="player1">Player 1: </label>
+              <input
+                className="text-field"
+                id="player1"
+                name="player1"
+                type="text"
+                placeholder="Add Player's 1 name"
+                onChange={e => this.handlePlayerName(e)}
+                value={player1.name}
+              />
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="player2">Player 2: </label>
-            <input
-              className="text-field"
-              id="player2"
-              name="player2"
-              type="text"
-              placeholder="Add Player's 2 name"
-              onChange={e => this.handlePlayerName(e)}
-              value={player2.name}
-            />
+          <div className="form-field-wrapper">
+            <div className="form-group">
+              <label htmlFor="player2">Player 2: </label>
+              <input
+                className="text-field"
+                id="player2"
+                name="player2"
+                type="text"
+                placeholder="Add Player's 2 name"
+                onChange={e => this.handlePlayerName(e)}
+                value={player2.name}
+              />
+            </div>
           </div>
-          <button
-            className="game-button"
-            disabled={!player1.valid || !player2.valid}
-            onClick={e => this.submitPlayers(e)}
-          >
-            Start
-          </button>
+          <div className="form-field-wrapper" style={{ paddingTop: '40px' }}>
+            <button
+              className="game-button"
+              disabled={!player1.valid || !player2.valid}
+              onClick={e => this.submitPlayers(e)}
+            >
+              Start
+            </button>
+          </div>
         </form>
       </div>
     );

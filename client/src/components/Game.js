@@ -129,7 +129,7 @@ export class Game extends Component {
     const { round, player1, player2, rounds } = this.props;
     const { turn, formValid, selectedValues } = this.state;
     return (
-      <div>
+      <div className="game-page">
         {rounds.length > 0 ? (
           <GameScore score={rounds} player1={player1} player2={player2} />
         ) : null}
@@ -194,13 +194,15 @@ export class Game extends Component {
             </label>
           </div>
         </form>
-        <button
-          className="game-button continue-game-button"
-          disabled={!formValid}
-          onClick={e => this.continueGame(e)}
-        >
-          Continue
-        </button>
+        <div className="form-field-wrapper">
+          <button
+            className="game-button continue-game-button"
+            disabled={!formValid}
+            onClick={e => this.continueGame(e)}
+          >
+            Continue
+          </button>
+        </div>
       </div>
     );
   }

@@ -9,9 +9,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 960px;
-  height: 500px;
+  min-height: 500px;
   background: white;
   border-radius: 2%;
+  padding: 20px 0;
+  margin: 30px 0;
 }
 
 .section-title {
@@ -23,7 +25,7 @@
 .panel-text {
   font-family: 'MonserratMedium';
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .form-field-wrapper {
@@ -36,19 +38,33 @@
 }
 
 .text-field {
-  padding: 10px 20px;
+  padding: 15px 50px 15px 10px;
   border: solid 2px #39e8b0;
+  font-size: 14px;
+}
+
+label {
+  font-family: 'MonserratRegular';
 }
 
 .game-button {
-  padding: 7px 40px;
+  padding: 10px 40px;
+  font-size: 18px;
   background-color: #39e8b0;
   color: white;
   font-family: 'MonserratMedium';
   cursor: pointer;
+  transition: all ease-in 0.2s;
+  border: none;
+}
+.game-button:hover {
+  padding: 15px 45px;
+  background-color: #32cb9a;
 }
 
 .game-button:disabled {
   opacity: 0.5;
+  background-color: #39e8b0;
+  padding: 10px 40px;
   cursor: not-allowed;
 }
