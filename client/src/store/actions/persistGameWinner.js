@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { fetchedGameResult } from './';
 
-const fetchGameWinner = winner => {
+const persistGameWinner = winner => {
   return (dispatch, getState) => {
     const currentState = getState();
     debugger;
@@ -12,16 +12,15 @@ const fetchGameWinner = winner => {
       rounds: currentState.rounds
     };
 
-    dispatch(fetchedGameResult(winner));
-    // axios
-    //   .post('/fetchGameResults', params)
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
+    axios
+      .post('/persistGameResults', params)
+      .then(res => {
+        dispatch(fetchedGameResult(winner));
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 };
 
-export default fetchGameWinner;
+export default persistGameWinner;

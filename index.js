@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const indexRoutes = require('./routes/index');
 
 const app = express();
 //  Serve client fields from react-app
@@ -12,9 +13,7 @@ app.use(
   })
 );
 
-app.post('/fetchGameResults', (req, res) => {
-  return res.send(req.body);
-});
+app.use('/', indexRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));

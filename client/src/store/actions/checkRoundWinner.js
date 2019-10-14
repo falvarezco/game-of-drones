@@ -1,5 +1,4 @@
 import { saveRoundResult } from './';
-
 const checkRoundWinner = ({ player1, player2 }) => {
   return (dispatch, getState) => {
     const currentState = getState();
